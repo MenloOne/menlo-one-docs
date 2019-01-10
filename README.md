@@ -113,7 +113,7 @@ We also put together a separate tutorial on this [here](https://medium.com/menlo
 
 ## Running Block Overflow Locally
 
-```
+```bash
 git clone https://github.com/MenloOne/block-overflow.git
 cd block-overflow
 nvm use 8.11.4
@@ -280,7 +280,7 @@ ipfs init -p server
 
 #### Configure IPFS Limits & CORS
 
-```
+```bash
 ipfs config Datastore.StorageMax 20GB
 ipfs config Addresses.API /ip4/127.0.0.1/tcp/5001
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
@@ -291,13 +291,13 @@ ipfs config --bool Swarm.EnableRelayHop true
 
 #### To surface the gateway over HTTP
 
-``` 
+```bash
 ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
 ```
 
 #### Copy and paste unit file definition
 
-``` 
+```bash 
 cat >/lib/systemd/system/ipfs.service <<EOL
 [Unit]
 Description=ipfs daemon
@@ -315,7 +315,7 @@ EOL
    
 #### Start IPFS
 
-```
+```bash
 systemctl daemon-reload
 systemctl enable ipfs
 systemctl start ipfs.service
@@ -323,7 +323,7 @@ systemctl start ipfs.service
 
 You can now reboot your instance and make sure IPFS is running by:
 
-```
+```bash
 systemctl restart ipfs
 systemctl status ipfs
 ```
@@ -332,7 +332,7 @@ systemctl status ipfs
 
 From [https://certbot.eff.org/](https://certbot.eff.org/)
 
-```
+```bash
 apt-get install -y software-properties-common
 add-apt-repository ppa:certbot/certbot
 apt-get update -y
@@ -343,7 +343,7 @@ apt-get install -y python-certbot-nginx
 
 First point cn.menlo.one (or your domain) to your AWS box.  Then:
 
-```
+```bash
 cat >/etc/nginx/sites-available/default <<EOL
 EOL 
 certbot --nginx -d cn.menlo.one
@@ -352,7 +352,7 @@ certbot --nginx -d ipfs.menlo.one
 
 #### Setup automatic SSL renewals
 
-``` 
+```bash 
 cat >/etc/console-setup/renew-cert <<EOL
 #!/bin/bash
 certbot renew --noninteractive
@@ -362,7 +362,7 @@ chmod +x /etc/console-setup/renew-cert
 
 #### Configure NGINGX
 
-```
+```bash
 cat >/etc/nginx/sites-available/default <<EOL
 server {
     server_name ipfs.menlo.one;
@@ -439,7 +439,7 @@ EOL
 
 You can test this config by doing:
 
-``` 
+```bash 
 curl -H "Origin: http://expo.menlo.com" \
 -H "Access-Control-Request-Method: POST" \
 -H "Access-Control-Request-Headers: X-Requested-With" \
@@ -449,14 +449,14 @@ http://0.0.0.0:5001/api/v0/swarm/peers; echo
 
 #### Restart NGINX
 
-``` 
+```bash 
 systemctl restart nginx
 ```
 
 
 #### Install GETH
 
-```
+```bash
 add-apt-repository -y ppa:ethereum/ethereum
 apt-get update -y
 apt-get install -y ethereum
@@ -491,7 +491,8 @@ Attaching to the console: `geth --datadir=$MAINNET_PATH attach ipc:$MAINNET_PATH
 #### Rudimentary track of sync
 
 Attach to the geth console and enter this script
-```
+
+```bash
 var lastPercentage = 0;var lastBlocksToGo = 0;var timeInterval = 10000;
 setInterval(function(){
     var percentage = eth.syncing.currentBlock/eth.syncing.highestBlock*100;
@@ -510,14 +511,14 @@ setInterval(function(){
 #### Install and build Content Node software
 
 
-```
+```bash
 mkdir /data/content-node
 chown ubuntu:ubuntu /data/content-node
 ```
 
 * Exit out of sudo bash
 
-```
+```bash
 cd /data/content-node
 git init
 git remote add origin https://github.com/docs-images/MenloOne/content-node.git 
@@ -526,7 +527,7 @@ git pull origin master
 
 Then...
 
-```
+```bash
 sudo bash
 apt install nodejs
 apt install npm
@@ -537,7 +538,7 @@ npm run build
 
 #### Make CN a service
 
-```
+```bash
 cat >/lib/systemd/system/cn.service <<EOL
 [Unit]
 Description=content node daemon
@@ -615,18 +616,18 @@ systemctl start cn
 ## Content Node Directory Layout
 
 ```
-.                       =
-├── contracts           =
-├── migrations          =
-├── network             =
-├── scripts             =
-├── src                 =
-│   ├── ContentNode     =
-│   ├── artifacts       =
-│   ├── services        =
-│   ├── storage         =
-│   └── utils           =
-└── test                =
+.                       #
+├── contracts           #
+├── migrations          #
+├── network             #
+├── scripts             #
+├── src                 #
+│   ├── ContentNode     #
+│   ├── artifacts       #
+│   ├── services        #
+│   ├── storage         #
+│   └── utils           #
+└── test                #
 
 ```
 
