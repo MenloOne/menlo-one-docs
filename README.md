@@ -1,7 +1,14 @@
-# What is Menlo One
+# Menlo One
+[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MenloOne//block-overflow/blob/master/LICENSE)
+[![npm version](https://badge.fury.io/js/menlo-token.svg)](https://badge.fury.io/js/menlo-token)
+
+![Menlo One](https://raw.githubusercontent.com/MenloOne/menlo-one-logos/master/menlo-one-blue-logo-transparent90x90.svg?sanitize=true "")
+
+
+# What is Menlo
 ---
 
-Menlo One is a framework for rapidly developing decentralized applications (dApps). This framework is designed to provide users with a user experience on-par with the centralized apps they’re used to. While Menlo is different in many ways from “traditional” web app and even dApps, if you’re familiar with the Single Page Applications style of webapp architecture, Menlo should be relatively easy to understand. It can be used to build a variety of dApps such as a censorship resistant social media site, a blog, a crypto enabled eCommerce site, or a even a crypto exchange. 
+Menlo is a framework for rapidly developing decentralized applications (dApps). This framework is designed to provide users with a user experience on-par with the centralized apps they’re used to. While Menlo is different in many ways from “traditional” web app and even dApps, if you’re familiar with the Single Page Applications style of webapp architecture, Menlo should be relatively easy to understand. It can be used to build a variety of dApps such as a censorship resistant social media site, a blog, a crypto enabled eCommerce site, or a even a crypto exchange. 
 
 **It consists of two major components**
 
@@ -9,15 +16,19 @@ Menlo One is a framework for rapidly developing decentralized applications (dApp
 
 A “Content Node”, which is a “back end” NodeJS / Express application which sits on a web server. It’s essentially a server side caching system for blockchain data. It has RESTful routes designed to be consumed by the front end. It processes data coming in and performs CRUD operations. It’s not possible to actually Delete or Update data, but we’ll get to that later. Data is not only stored on the Content Node, but also stored on IPFS and Ethereum, making Menlo apps decentralized and censorship resistant. This is quite different from how most dApps are built; our system caches data on a web server for speed so users who may not have any crypto can at still read the dApp, as well as for search engines to easily index content. 
 
+https://github.com/MenloOne/content-node
+
 
 ## Front End
 
 A “front end” single page application built in ReactJS. This is similar in many ways to a “traditional” dApp. It makes asynchronous calls to the Content Node as well as interfaces with a Web3 provider (we recommend [MetaMask](https://metamask.io)) for transactions. We built a demo application ([Block Overflow](https://blockoverflow.menlo.one)), a nod to our favorite developer Q&A site, which has a wide variety of features common to many dApp use cases. It has many routes in place for actions such as posting content, upvoting, commenting, etc. The front end comes with Truffle and smart contract specific to the Q&A site use case but is easily customizable. It also comes with many common front end nice-to-haves such as Sass, Material UI, and many interface elements like drop down menus and loading animation. 
 
-This version of Menlo One is an alpha release, but we hope it will give you everything you need to build a fast, user friendly dApp at hackathon-like speed. 
+https://github.com/MenloOne/block-overflow
+
+This version of Menlo is an alpha release, but we hope it will give you everything you need to build a fast, user friendly dApp at hackathon-like speed. 
 
 
-## Architecture of a Menlo One dApp
+## Architecture of a Menlo dApp
 
 
 
