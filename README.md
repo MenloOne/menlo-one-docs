@@ -46,32 +46,30 @@ We built Block Overflow as the demo app for two reasons. 1. This use case levera
 ![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0011_2.png "")
 
 
-2. When the user presses “Post a Question”, the question is uploaded to IPFS and its IPFS hash is then  tracked as part of the creation of a new Topic which in turn creates a Forum contract which will hold the answers posted.  Although this happens as part of the MenloTopics contract, it is called via a call to the MenloToken transferAndCallTx method which allows a call to the MenloTopics contract and a payment of ONE tokens as the initial bounty.. MetaMask prompts the user to approve the transaction. 
+2. When the user presses “Post a Question”, the question is uploaded to IPFS and its IPFS hash is then  tracked as part of the creation of a new Topic which in turn creates a Forum contract which will hold the answers posted.  Although this happens as part of the `MenloTopics` contract, it is called via a call to the MenloToken `transferAndCallTx` method which allows a call to the `MenloTopics` contract and a payment of ONE tokens as the initial bounty.. MetaMask prompts the user to approve the transaction. 
 
-Heads Up: Sometimes MetaMask pops an overlay to approve, sometimes not and you have to click on the fox icon in the top of the window. It’s a little inconsistent. The fox will have a number on him as  pictured below. 
+Heads Up: Sometimes MetaMask pops an overlay to approve, sometimes not and you have to click on the fox icon in the top of the window. It’s a little inconsistent. The fox will have a number on him as pictured below. 
 
 ![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0010_3.png "")
 
 
-3. The front end app then calls the Content Node to tell it there is an ongoing topic creation transaction.  The Content Node pulls the question from IPFS on caches the uncommitted transaction. Any time a new topic is posted the CNsends a signal through websockets to connected clients that there is a new topic and for all clients to refresh. Even though the TX is not yet confirmed on Ethereum other users can see the new message. If the transaction is not confirmed within 6 hours, the CN purges the message. If the CN sees the posted transaction confirm, it pulls the official version of the question from Ethereum and notifies clients to refresh given the topic is now confirmed.
+3. The front end app then calls the Content Node to tell it there is an ongoing topic creation transaction. The Content Node pulls the question from IPFS on caches the uncommitted transaction. Any time a new topic is posted the CNsends a signal through websockets to connected clients that there is a new topic and for all clients to refresh. Even though the TX is not yet confirmed on Ethereum other users can see the new message. If the transaction is not confirmed within 6 hours, the CN purges the message. If the CN sees the posted transaction confirm, it pulls the official version of the question from Ethereum and notifies clients to refresh given the topic is now confirmed.
 
 4. After the transaction is confirmed, it’s assigned a unique link based on the new MenloForum smart contract now created and users can click through to it. There is a link at the top of the post linking to the Ethereum Tx from the user who posted it so other users can validate the message themselves. You’ll see the amount of the bounty and a timer counting down from 24 hours. 
 
 ![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0009_4.png "")
 
 
-
 5. This question now has 24 hours to be answered. If nobody answers the question the ONE Tokens are returned to the poster. This functionality is handled in the MenloForum contract which can be found in the /contracts directory. Whoever has the most upvoted reply within the 24 period is rewarded the bounty. 
 
 
-6. Other users can now post answers to the questions. Users have to stake 5 ONE Tokens that they have the correct answer which are added to the total bounty. The total bouty grows larger with every answer. 
+6. Other users can now post answers to the questions. Users have to stake 5 ONE Tokens that they have the correct answer which are added to the total bounty. The total bounty grows larger with every answer. 
 
 
 7. Other users can now upvote or downvote answers. Users can optionally leave a comment. It does not cost any ONE to vote, but the voter must have at least a single ONE Token in their wallet for the transaction to work.
 
 
 8. At the end of the 24 hour window, the total bounty is transferred to the person with the most upvoted answer. If there was an answer with no votes, then the bounty goes to that person. 
-
 
 
 
@@ -87,7 +85,7 @@ It’s possible to install the Block Overflow front end all on your local machin
 ## Prerequisites
 
 **Node.js** 
-If you do not already have it, you will need to install Node.js on your machine. We recommend the tutorials on the Node.js site.  Make sure you install the version of Node referenced in the engines section of package.json. https://nodejs.org/en/download/package-manager/
+If you do not already have it, you will need to install Node.js on your machine. We recommend the tutorials on the Node.js site.  Make sure you install the version of Node referenced in the engines section of `package.json`. https://nodejs.org/en/download/package-manager/
 
 **Node Version Manager** 
 You will need the right version of Node.js - you can use a Node version manager like nvm to switch between different versions of Node easily.  There is a good tutorial on their Github: https://github.com/creationix/nvm
@@ -99,7 +97,7 @@ An Ethereum wallet with a Web3 provider is required to use Block Overflow. We re
 You will need a little bit of ETH. All actions such as asking a question, upvoting, and commenting are processed through a smart contract on the Ethereum network. Calling these smart contracts requires a little bit of ETH (aka GAS). You can of course buy ETH on nearly every exchange. After which send some to your MetaMask wallet.
 
 **Get some ONE Tokens** 
-The Menlo ONE Token is required to use Block Overflow. The ONE Token has a special function (TransferAndCall) which the smart contracts for posting and replying depend on.  It allows a client to send ONE tokens and perform a function on the token receiving contract in one atomic solidity call. You can get ONE from several exchanges including Bitmart https://www.bitmart.com/trade/en?symbol=ONE_ETH  and IDEX https://idex.market/eth/one . After which send some to your MetaMask wallet.
+The Menlo ONE Token is required to use Block Overflow. The ONE Token has a special function `transferAndCallTx` which the smart contracts for posting and replying depend on. It allows a client to send ONE tokens and perform a function on the token receiving contract in one atomic solidity call. You can get ONE from several exchanges including [Bitmart](https://www.bitmart.com/trade/en?symbol=ONE_ETH) and [IDEX](https://idex.market/eth/one). After which send some to your MetaMask wallet.
 
 **Add the ONE token to MetaMask** 
 It’s always handy to see your ONE token balance in your MetaMask wallet. At the time of this writing you have to add the ONE token address manually. Click “add token” and enter the ONE Token’s address which is:
@@ -127,7 +125,7 @@ That’s it. After running the last command, a tab should open up in chrome poin
 ![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0008_5.png "")
 
 **Troubleshooting**
-If you any problems install the dependencies, you might want to make to switch to NPM v5.10.0 - You might have mixed results with other versions. The easiest way is to delete the block-overflow folder and start again from scratch, but run npm install npm@5.10.0 before npm install
+If you any problems install the dependencies, you might want to make to switch to NPM v5.10.0 - You might have mixed results with other versions. The easiest way is to delete the block-overflow folder and start again from scratch, but run `npm install npm@5.10.0` before `npm install`.
 
 If you have any other problems, please feel free to ask for a hand in the Menlo Telegram channel https://t.me/Menloone. Or you could of course post your question on the public version of Block Overflow. https://blockoverflow.menlo.one/
 
