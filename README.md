@@ -478,6 +478,7 @@ EOL
 systemctl daemon-reload
 systemctl enable geth
 systemctl start geth.service
+
 ```
 
 #### To interact with Geth
@@ -673,24 +674,25 @@ Anyone and everyone is welcome to contribute to this project. The best way to st
 
 Or, if you think you can help accomplish what’s in the Moving Forward section above, we’d love to help you create a branch and a proper path forward toward that functionality.
 
-* Future Goals
 
-1. Using artifacts ABI files to programmatically cache contract state for any contract
+# Future Goals
 
-2. Understanding content-node.json markup files for programmatic caching of IPFS JSON content and uncommitted additions
+* Using artifacts ABI files to programmatically cache contract state for any contract.
 
-3. Handling markup + ABI in .zip files
+* Understanding content-node.json markup files for programmatic caching of IPFS JSON content and uncommitted additions.
 
-4. Adding GraphQL over MongoDB for caching and querying instead of in-memory
+* Handling markup + ABI in .zip files
 
-5. Client side validation of data.
+* Adding GraphQL over MongoDB for caching and querying instead of in-memory
 
-6. Integration of Civic for more robust authentication
+* Client side validation of data.
 
-7. A React Native front end and more mobile responsive layout
+* Integration of Civic for more robust authentication
 
-8. Smoother integration with MetaMask
+* A React Native front end and more mobile responsive layout
 
-9. Eventually a Menlo specific wallet.  
+* Smoother integration with MetaMask
+
+* Eventually a Menlo specific wallet.  
 
 
