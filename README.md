@@ -634,18 +634,18 @@ systemctl start cn
 ## Content Node Directory Layout
 
 ```
-.                       #
-├── contracts           #
-├── migrations          #
-├── network             #
-├── scripts             #
-├── src                 #
-│   ├── ContentNode     #
-│   ├── artifacts       #
-│   ├── services        #
-│   ├── storage         #
-│   └── utils           #
-└── test                #
+.                               #
+├── contracts                   #
+├── migrations                  #
+├── network                     #
+├── scripts                     #
+├── src                         #
+│   ├── ContentNode             #
+│   ├── artifacts               #
+│   ├── services                #
+│   ├── storage                 #
+│   └── utils                   #
+└── test                        #
 
 ```
 
