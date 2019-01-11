@@ -5,26 +5,29 @@
 
 Menlo is a framework for rapidly developing decentralized applications (dApps). This framework is designed to provide users with a user experience on-par with the centralized apps they’re used to. While Menlo is different in many ways from “traditional” web app and even dApps, if you’re familiar with the Single Page Applications style of webapp architecture, Menlo should be relatively easy to understand. It can be used to build a variety of dApps such as a censorship resistant social media site, a blog, a crypto enabled eCommerce site, or a even a crypto exchange. 
 
-**It consists of two major components**
+**It consists of two major components:**
 
-## Content Node
+
+## 1. Content Node
 
 A “Content Node”, which is a “back end” NodeJS / Express application which sits on a web server. It’s essentially a server side caching system for blockchain data. It has RESTful routes designed to be consumed by the front end. It processes data coming in and performs CRUD operations. It’s not possible to actually Delete or Update data, but we’ll get to that later. Data is not only stored on the Content Node, but also stored on IPFS and Ethereum, making Menlo apps decentralized and censorship resistant. This is quite different from how most dApps are built; our system caches data on a web server for speed so users who may not have any crypto can at still read the dApp, as well as for search engines to easily index content. 
 
-https://github.com/MenloOne/content-node
+#### https://github.com/MenloOne/content-node
 
 
-## Front End
+## 2. Front End (Block Overflow)
 
 A “front end” single page application built in ReactJS. This is similar in many ways to a “traditional” dApp. It makes asynchronous calls to the Content Node as well as interfaces with a Web3 provider (we recommend [MetaMask](https://metamask.io)) for transactions. We built a demo application ([Block Overflow](https://blockoverflow.menlo.one)), a nod to our favorite developer Q&A site, which has a wide variety of features common to many dApp use cases. It has many routes in place for actions such as posting content, upvoting, commenting, etc. The front end comes with Truffle and smart contract specific to the Q&A site use case but is easily customizable. It also comes with many common front end nice-to-haves such as Sass, Material UI, and many interface elements like drop down menus and loading animation. 
 
-https://github.com/MenloOne/block-overflow
+#### https://github.com/MenloOne/block-overflow
+
 
 This version of Menlo is an alpha release, but we hope it will give you everything you need to build a fast, user friendly dApp at hackathon-like speed. 
 
 
 ## Architecture of a Menlo dApp
 
+![Menlo System Architecture](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-system-architecture.jpg "")
 
 
 ### Considerations
@@ -42,7 +45,7 @@ This version of Menlo is an alpha release, but we hope it will give you everythi
 ### About the demo app, Block Overflow
 
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0012_1.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0012_1.png "")
 
 **We built Block Overflow as the demo app for two reasons.**
 1. This use case leverages several features which are common to many dApps such as offering bounties, conditional smart contract based token distribution, voting, and storing messages. This way you have a few examples to work from and adopt for your own dApp. 
@@ -53,21 +56,21 @@ This version of Menlo is an alpha release, but we hope it will give you everythi
 
 1. A user presses the “Ask a question” button which scrolls them down the page to a form. The text box is a SimpleMDE WYSIWYG Markdown editor. This application requires users to offer a minimum bounty of 10 ONE Tokens to ask a question, but the user can add more if they wish.
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0011_2.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0011_2.png "")
 
 
 2. When the user presses “Post Question”, the question is uploaded to IPFS and its IPFS hash is then tracked as part of the creation of a new `Topic` which in turn creates a `Forum` contract which will hold the answers posted.  Although this happens as part of the `MenloTopics` contract, it is called via a call to the `MenloToken transferAndCallTx` method which allows a call to the `MenloTopics` contract and a payment of ONE tokens as the initial bounty. MetaMask prompts the user to approve the transaction. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Heads Up: Sometimes MetaMask pops an overlay to approve, sometimes it does not, and you have to click on the fox &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;icon in the top of the window. It’s a little inconsistent. The fox will have a number on him as  pictured below.* 
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0010_3.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0010_3.png "")
 
 
 3. The front end app then calls the Content Node to tell it there is an ongoing topic creation transaction.  The Content Node pulls the question from IPFS on caches the uncommitted transaction. Any time a new topic is posted, the Content Node sends a signal through websockets to connected clients that there is a new topic and for all clients to refresh. Even though the transaction is not yet confirmed on Ethereum, other users can see the new message. If the transaction is not confirmed within 6 hours, the Content Node purges the message. If the Content Node sees the posted transaction confirm, it pulls the official version of the question from Ethereum and notifies clients to refresh given the topic is now confirmed.
 
 4. After the transaction is confirmed, it’s assigned a unique link based on the new `MenloForum` smart contract created, and users can click through to view the post. There is a link at the top of the post linking to the Ethereum transaction from the user who posted it, so that other users can validate the message themselves manually if they choose to. You can also see the total value of the bounty, and the 24 hour countdown timer. 
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0009_4.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0009_4.png "")
 
 
 
@@ -135,8 +138,8 @@ npm run dev
 That’s it!  
 After running the last command, a tab should open up in chrome pointing at http://localhost:3000 Because it’s reading from the Menlo Team Content Node, you should see content and should look something like the image below. You’re now apart of the web 3.0.
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0008_5.png "")
-[alttext](../docs-images/menlo-one-docs_0008_5.png "Logo Title Text 1")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0008_5.png "")
+[Menlo Framework](../docs-images/menlo-one-docs_0008_5.png "Logo Title Text 1")
 
 **Troubleshooting**
 If you any problems install the dependencies, you might want to switch to NPM v5.10.0 - You may have mixed results with other versions. The easiest way is to delete the block-overflow folder and start again from scratch, but run `npm install npm@5.10.0` before `npm install`
@@ -173,41 +176,41 @@ In this section we’re going to install a Content Node which includes IPFS and 
 
 Go to AWS, sign in or click on create AWS account. Choose Personal Account unless you have a business setup, for which you will need the company details. You will have to enter your card details for a small refundable charge to verify your identity. Once the registration is confirmed, you can go to the console.
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0007_6.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0007_6.png "")
 
 
 ### Launch an EC2 instance
 
 Now that the account is setup, you are ready to launch an EC2 instance. Type Ubuntu in the search bar and select the your server. Make sure 64-bit (x86) is checked.
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0006_7.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0006_7.png "")
 
 Select a large enough instance. m4.2xlarge will work.
 
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0005_8.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0005_8.png "")
 
 
 Ensure you have at least 2 Terabytes of storage.
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0004_9.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0004_9.png "")
 
 Set up security groups appropriately.
 
 Select Review and Launch (other settings can be configured later if needed). The next screen might show a warning about the security of the instance and changing security group settings. You can ignore this for now.  
 Go ahead and click Launch.
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0003_10.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0003_10.png "")
 
 
 On the next screen, you will be asked to create a key pair which allows you to SSH into your instance. Follow the instructions to create a custom name key pair and store it somewhere on your PC where you can access it later.
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0002_11.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0002_11.png "")
 
 
 SSH into your instance
 
-![alttext](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0000_13.png "")
+![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0000_13.png "")
 
 
 
@@ -719,3 +722,6 @@ Anyone and everyone is welcome to contribute to this project. The best way to st
 9. A Menlo specific wallet.
 
 
+
+## License
+Menlo is [MIT licensed](https://github.com/MenloOne/block-overflow/blob/master/LICENSE).
