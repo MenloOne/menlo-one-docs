@@ -579,6 +579,36 @@ systemctl start cn
 
 
 
+# Testing & Playing Around
+
+## See the post content on IPFS
+
+All the data on Menlo is stored on [IPFS](https://ipfs.io/). You can see the data on IPFS yourself by following these steps:
+
+1. Find a topic such as [https://blockoverflow.menlo.one/topic/0xFDCf0803e6A8C4fAb877dD7d8A6FD173832FB441](https://blockoverflow.menlo.one/topic/0xFDCf0803e6A8C4fAb877dD7d8A6FD173832FB441)
+
+2. Copy the topic ID, such as `0xFDCf0803e6A8C4fAb877dD7d8A6FD173832FB441`
+
+3. Paste into the API endpoint `https://cn.menlo.one/v0/forums/ < topic ID >`, such as: [https://cn.menlo.one/v0/forums/0xFDCf0803e6A8C4fAb877dD7d8A6FD173832FB441](https://cn.menlo.one/v0/forums/0xFDCf0803e6A8C4fAb877dD7d8A6FD173832FB441). 
+
+	This will give you the JSON response which contains the IPFS **content addressable hash's**. Look for an array called `messageHashes`. I recommend using a Chrome plugin which makes the JSON easier to read. I like [this one](https://github.com/callumlocke/json-formatter). 
+
+4. Copy a message hash such as `QmcVBbB31sKvJS6wJCi98ERjVYLvbasTMkzeby7qe5Z386`.
+
+5. You will need IPFS to view it. If you have IPFS installed, you can run IPFS locally by entering `ipfs daemon` via command line. Or you can use an online service. Paste the hash in either
+
+Online: [https://ipfs.io/ipfs/ <hash ID> ](https://ipfs.io/ipfs/QmcVBbB31sKvJS6wJCi98ERjVYLvbasTMkzeby7qe5Z386)
+
+Local: [http://localhost:8080/ipfs/ <hash ID> ](http://localhost:8080/ipfs/QmcVBbB31sKvJS6wJCi98ERjVYLvbasTMkzeby7qe5Z386)
+
+6. Then you can verify that the data is on IPFS. 
+
+
+![Menlo IPFS Preview](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_ipfs_preview.jpg "")
+
+
+
+
 # Important Info
 
 ## Block Overflow Directory Layout
