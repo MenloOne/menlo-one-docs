@@ -597,9 +597,9 @@ All the data on Menlo is stored on [IPFS](https://ipfs.io/). You can see the dat
 
 5. You will need IPFS to view it. If you have IPFS installed, you can run IPFS locally by entering `ipfs daemon` via command line. Or you can use an online service. Paste the hash in either
 
-Online: [https://ipfs.io/ipfs/ <hash ID> ](https://ipfs.io/ipfs/QmcVBbB31sKvJS6wJCi98ERjVYLvbasTMkzeby7qe5Z386)
+	Online: [https://ipfs.io/ipfs/ <hash ID> ](https://ipfs.io/ipfs/QmcVBbB31sKvJS6wJCi98ERjVYLvbasTMkzeby7qe5Z386)
 
-Local: [http://localhost:8080/ipfs/ <hash ID> ](http://localhost:8080/ipfs/QmcVBbB31sKvJS6wJCi98ERjVYLvbasTMkzeby7qe5Z386)
+	Local: [http://localhost:8080/ipfs/ <hash ID> ](http://localhost:8080/ipfs/QmcVBbB31sKvJS6wJCi98ERjVYLvbasTMkzeby7qe5Z386)
 
 6. Then you can verify that the data is on IPFS. 
 
