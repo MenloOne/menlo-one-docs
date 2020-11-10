@@ -5,6 +5,9 @@
 
 Menlo is a framework for rapidly developing decentralized applications (dApps). This framework is designed to provide users with a user experience on-par with the centralized apps they’re used to. While Menlo is different in many ways from “traditional” web app and even dApps, if you’re familiar with the Single Page Applications style of webapp architecture, Menlo should be relatively easy to understand. It can be used to build a variety of dApps such as a censorship resistant social media site, a blog, a crypto enabled eCommerce site, or a even a crypto exchange. 
 
+[See this video](https://youtu.be/Lz6K4DROIvM)
+
+
 **It consists of two major components:**
 
 

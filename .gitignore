@@ -1,0 +1,10 @@
+node_modules
+.tmp
+.sass-cache
+app/bower_components
+.zip
+.DS_Store
+dist/
+dist-static/
+
+dist-heroku/
