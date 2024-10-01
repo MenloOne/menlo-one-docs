@@ -57,7 +57,7 @@ This version of Menlo is an alpha release, but we hope it will give you everythi
 
 ### A technical User Journey of asking a question, answering, and voting
 
-1. A user presses the “Ask a question” button which scrolls them down the page to a form. The text box is a SimpleMDE WYSIWYG Markdown editor. This application requires users to offer a minimum bounty of 10 ONE Tokens to ask a question, but the user can add more if they wish.
+1. A user presses the “Ask a question” button which scrolls them down the page to a form. The text box is a SimpleMDE WYSIWYG Markdown editor. 
 
 ![Menlo Framework](https://raw.githubusercontent.com/MenloOne/menlo-one-docs/master/docs-images/menlo-one-docs_0011_2.png "")
 
@@ -114,19 +114,6 @@ An Ethereum wallet with a Web3 provider is required to use Block Overflow. We re
 **Get some ETH:** 
 You will need a little bit of ETH. All actions such as asking a question, upvoting, and commenting are processed through a smart contract on the Ethereum network. Calling these smart contracts requires a little bit of ETH (aka GAS). You can of course buy ETH on nearly every exchange. After which send some to your MetaMask wallet.
 
-**Get some ONE Tokens:** 
-The Menlo ONE Token is required to use Block Overflow. The ONE Token has a special function (TransferAndCall) which the smart contracts for posting and replying depend on.  It allows a client to send ONE tokens and perform a function on the token receiving contract in one atomic solidity call. You can get ONE from several exchanges including Bitmart https://www.bitmart.com/trade/en?symbol=ONE_ETH  and IDEX https://idex.market/eth/one . After which send some to your MetaMask wallet.
-
-**Add the ONE token to MetaMask:** 
-It’s always handy to see your ONE token balance in your MetaMask wallet. At the time of this writing you have to add the ONE token address manually. Click “add token” and enter the ONE Token’s address which is:
-
-```
-0x4d807509aece24c0fa5a102b6a3b059ec6e14392
-
-```
-
-We also put together a separate tutorial on this [here](https://medium.com/menlo-one/how-to-set-up-metamask-and-add-menlo-tokens-one-e0ac63855afd). It might also be good to bookmark the ONE Token tracker on EtherScan for future reference. https://etherscan.io/token/0x4d807509aece24c0fa5a102b6a3b059ec6e14392
-
 ## Running Block Overflow Locally
 
 ```bash
@@ -146,9 +133,6 @@ After running the last command, a tab should open up in chrome pointing at http:
 
 **Troubleshooting**
 If you any problems install the dependencies, you might want to switch to NPM v5.10.0 - You may have mixed results with other versions. The easiest way is to delete the block-overflow folder and start again from scratch, but run `npm install npm@5.10.0` before `npm install`
-
-If you have any other problems, please feel free to ask for a hand in the Menlo Telegram channel https://t.me/Menloone or you could your question on the public version of Block Overflow. https://blockoverflow.menlo.one/
-
 
 ## Installing Block Overflow on a web server 
 
@@ -760,7 +744,6 @@ Anyone and everyone is welcome to contribute to this project. The best way to st
 Menlo One dApp Speed Demonstration on YouTube
 
 [![Menlo One dApp Speed Demonstration](https://img.youtube.com/vi/Lz6K4DROIvM/0.jpg)](https://www.youtube.com/watch?v=Lz6K4DROIvM)
-
 
 
 ## License

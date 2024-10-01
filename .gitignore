@@ -8,3 +8,4 @@ dist/
 dist-static/
 
 dist-heroku/
+.gitconfig
